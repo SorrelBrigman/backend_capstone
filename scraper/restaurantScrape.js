@@ -1,17 +1,20 @@
 const request = require('request');
 const {lineBreakRemover } = require('./helper.js')
 const cheerio = require('cheerio');
+const fs = require('fs');
 
 
 
-const getRestaurantInfo = (url) => {
+const getRestaurantInfo = (html) => {
 
+  // let url = urlSent;
+  // console.log(url);
+  // request(url, function(error, response, html){
 
-  request(url, function(error, response, html){
-
+      console.log("got here")
           // First we'll check to make sure no errors occurred when making the request
 
-          if(!error){
+          // if(!error){
               // Next, we'll utilize the cheerio library on the returned html which will essentially give us jQuery functionality
 
               var $ = cheerio.load(html);
@@ -128,12 +131,21 @@ const getRestaurantInfo = (url) => {
                 var reviewNumber = lineBreakRemover(numberOfReviews);
                 jsonRest.numberOfReviews = parseInt(reviewNumber);
               })
+        fs.appendFileSync('outputRestaurants.json', JSON.stringify(jsonRest, null, 4), function(err){
+
+            console.log('File successfully updated! - Check your project directory for the output.json file');
+
+        })
+
 
               return jsonRest;
 
-      } //end of if
-    }); //end of request
+     // } //end of if
+    // }); //end of request
 
 
 
 } //end of get restaurant
+
+
+module.exports = {getRestaurantInfo}

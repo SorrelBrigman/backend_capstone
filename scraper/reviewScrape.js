@@ -65,3 +65,6 @@ const getReviewsOnPage = (url, yelpRestId) => {
   }); //end of request
 
 } //end of function
+
+
+module.exports = {getReviewsOnPage}

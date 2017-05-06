@@ -23,4 +23,30 @@ const getRatingNumber = (ratingString) => {
   return ratingNumber;
 }
 
-module.exports = {lineBreakRemover, parseCount, getRatingNumber }
+const reviewPages = (restaurantObj) => {
+  let reviewCount = restaurantObj.numberOfReviews;
+  //find the number of pages of reviews
+  let pageNumber = (reviewCount/20);
+  //find out the number of reviews on the last page
+  let lastPage = (reviewCount%20);
+  let reviewExtentions = [];
+  for (let i = 0; i < pageNumber; i++) {
+    let urlExtention;
+    if(i = 0) {
+      let urlExtention = "";
+    } else {i < pageNumber} {
+      let start = i * 20;
+      let urlExtention = `?start${start}`
+    }
+    reviewExtentions.push(urlExtention);
+  }
+  return reviewExtentions;
+}
+
+const lastPageReviews = (restaurantObj) => {
+  let reviewCount = restaurantObj.numberOfReviews;
+  let lastPage = (reviewCount%20);
+  return lastPage;
+}
+
+module.exports = {lineBreakRemover, parseCount, getRatingNumber, reviewPages, lastPageReviews }
