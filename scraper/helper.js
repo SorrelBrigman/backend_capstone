@@ -4,8 +4,12 @@
 const lineBreakRemover = (info) => {
   let infoArray = info.split('\n');
   let noLineInfo = infoArray[1];
-  let noSpaceInfo = noLineInfo.trim();
-  return noSpaceInfo;
+  if (noLineInfo) {
+    let noSpaceInfo = noLineInfo.trim();
+    return noSpaceInfo;
+  } else {
+    return infoArray[0].trim
+  }
 }
 
 //function to get the numberic value of the review votes
@@ -18,9 +22,14 @@ const parseCount = (votes) => {
 //functino to get the numeric value from review
 
 const getRatingNumber = (ratingString) => {
+  if(ratingString !== undefined || null) {
   let ratingArray = ratingString.split(' star rating');
   let ratingNumber = parseFloat(ratingArray[0]);
   return ratingNumber;
+  } else {
+    return ratingString
+  }
+
 }
 
 const reviewPages = (restaurantObj) => {

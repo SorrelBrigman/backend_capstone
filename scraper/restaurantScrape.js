@@ -84,8 +84,10 @@ const getRestaurantInfo = (html) => {
                 var data = $(this);
                 address_string = data.text();
                 address_array = address_string.split('Nashville, TN ')
+                console.log("address_array", address_array)
                 jsonRest.address_string = lineBreakRemover(address_array[0]);
-                jsonRest.address_zip = lineBreakRemover(address_array[1]);
+                var zip = address_array[1].split("\n");
+                jsonRest.address_zip = zip[0].trim();
               });
 
               //get restaurant neighborhood
@@ -131,13 +133,19 @@ const getRestaurantInfo = (html) => {
                 var reviewNumber = lineBreakRemover(numberOfReviews);
                 jsonRest.numberOfReviews = parseInt(reviewNumber);
               })
-        fs.appendFileSync('outputRestaurants.json', JSON.stringify(jsonRest, null, 4), function(err){
+        // fs.appendFileSync('outputRestaurants.json', JSON.stringify(jsonRest, null, 4), function(err){
 
-            console.log('File successfully updated! - Check your project directory for the output.json file');
+        //     console.log('File successfully updated! - Check your project directory for the output.json file');
 
-        })
+        // })
 
-
+              console.log("jsonRest", jsonRest);
+              fs.appendFileSync('outputRestaurants.json', JSON.stringify(jsonRest, null, 4), function(err){
+                res.send('Check your console!')
+             })
+              fs.appendFileSync('outputRestaurants.json', `,`, function(err){
+                res.send('Check your console!')
+             })
               return jsonRest;
 
      // } //end of if

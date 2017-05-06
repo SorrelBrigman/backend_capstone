@@ -10,29 +10,28 @@ const {lineBreakRemover, parseCount, getRatingNumber, reviewPages, lastPageRevie
 
 app.get('/scrape2', function(req, res){
 
+  return Promise.all(list.map((i) => {
 
 
-  let RestInfo = [];
+    let RestInfo = [];
 
-  for(let i = 0; i < 5; i ++) {
+
 
     let url = `https://www.yelp.com/biz/${list[i]}`;
 
-    request(url, function(error, response, html){
-    let getRestPromise = new Promise ((resolve, reject) => {
+     return request(url, function(error, response, html){
+       let getRestPromise = new Promise ((resolve, reject) => {
       // if(!error){
-      let info = getRestaurantInfo(html)
+       let info = getRestaurantInfo(html)
+       return info;
+       })
+      // .then((info) => {
+      // RestInfo.push(info);
 
-      resolve(info);
-      reject(error);
-    })
-    .then((info) => {
-      RestInfo.push(info);
-
-    })
-    .catch((error) => {
-      console.log(error)
-    })
+      // })
+      // .catch((error) => {
+      // console.log(error)
+      // })
 
     // if(i === 0 ) {
     //     fs.writeFileSync('outputRestaurants.json', JSON.stringify(RestInfo, null, 4), function(err){
@@ -58,7 +57,8 @@ app.get('/scrape2', function(req, res){
       res.send('Check your console!')
       // }//end of if
     })// end of request
-  }// end of for loop
+  }))
+
 }); //end of get
 
 
