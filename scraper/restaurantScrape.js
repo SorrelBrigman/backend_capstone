@@ -5,7 +5,7 @@ const fs = require('fs');
 
 
 
-const getRestaurantInfo = (html) => {
+const getRestaurantInfo = (html, yelp) => {
 
   // let url = urlSent;
   // console.log(url);
@@ -57,7 +57,8 @@ const getRestaurantInfo = (html) => {
                 thursday_hours: "",
                 friday_hours: "",
                 saturday_hours: "",
-                sunday_hours: ""};
+                sunday_hours: "",
+                yelp_id: yelp};
 
 
                 //get restaurant name
@@ -86,8 +87,10 @@ const getRestaurantInfo = (html) => {
                 address_array = address_string.split('Nashville, TN ')
                 console.log("address_array", address_array)
                 jsonRest.address_string = lineBreakRemover(address_array[0]);
-                var zip = address_array[1].split("\n");
-                jsonRest.address_zip = zip[0].trim();
+                if (address_array[1]) {
+                  var zip = address_array[1].split("\n");
+                  jsonRest.address_zip = zip[0].trim();
+                }
               });
 
               //get restaurant neighborhood

@@ -1,16 +1,17 @@
 const request = require('request');
 const {lineBreakRemover, parseCount, getRatingNumber } = require('./helper.js')
 const cheerio = require('cheerio');
-
+const express = require('express');
+const fs = require('fs');
 
 
 //function takes two arguments, the page it is scraping,
 //and the current yelp id of the restaurant
 
-const getReviewsOnPage = (url, yelpRestId) => {
-  request(url, function(error, response, html){
+const getReviewsOnPage = (html, yelpRestId) => {
 
-    if(!error){
+
+
 
         var $ = cheerio.load(html);
 
@@ -32,9 +33,9 @@ const getReviewsOnPage = (url, yelpRestId) => {
           data.children().each(function(j) {
             let reviewData = $(this);
             let review = {}
-            review.restaurant_id = yelpRestId;
             //first review slot on page is empty, so skip it
             if (j >= 1) {
+              review.restaurant_id = yelpRestId;
               let yelp_id_href = reviewData.find('.user-display-name').attr('href');
               let yelp_id_array = yelp_id_href.split('userid=')
               review.user_name = reviewData.find('.user-display-name').text();
@@ -52,17 +53,23 @@ const getReviewsOnPage = (url, yelpRestId) => {
               review.votes_funny = parseCount(funny);
               let cool = reviewData.find('.cool').children().next().next().text();
               review.votes_cool = parseCount(cool);
+              //push each review to the array of reviews for this page
+              jsonReviews.push(review);
+             console.log("jsonReviews", jsonReviews);
+                fs.appendFileSync('outputReviews.json', JSON.stringify(review, null, 4), function(err){
+                  res.send('Check your console!')
+               })
+                fs.appendFileSync('outputReviews.json', `,`, function(err){
+                  res.send('Check your console!')
+               })
             }
-            //push each review to the array of reviews for this page
-            jsonReviews.push(review);
 
           })
-          console.log(`Reviews from ${url} have been scraped`)
+
           return jsonReviews
        })
 
-    } // end of if
-  }); //end of request
+
 
 } //end of function
 

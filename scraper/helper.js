@@ -38,16 +38,21 @@ const reviewPages = (restaurantObj) => {
   let pageNumber = (reviewCount/20);
   //find out the number of reviews on the last page
   let lastPage = (reviewCount%20);
+  // if(lastPage !== 0) {
+  //   pageNumber = pageNumber + 1;
+  // }
   let reviewExtentions = [];
   for (let i = 0; i < pageNumber; i++) {
     let urlExtention;
-    if(i = 0) {
-      let urlExtention = "";
+    if(i === 0) {
+      urlExtention = "";
     } else {i < pageNumber} {
       let start = i * 20;
-      let urlExtention = `?start${start}`
+      urlExtention = `?start=${start}`;
+      // console.log(urlExtention)
     }
     reviewExtentions.push(urlExtention);
+    // console.log(reviewExtentions);
   }
   return reviewExtentions;
 }
