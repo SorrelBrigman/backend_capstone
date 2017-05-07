@@ -55,7 +55,7 @@ const getReviewsOnPage = (html, yelpRestId) => {
               review.votes_cool = parseCount(cool);
               //push each review to the array of reviews for this page
               jsonReviews.push(review);
-             console.log("jsonReviews", jsonReviews);
+             // console.log("jsonReviews", jsonReviews);
                 fs.appendFileSync('outputReviews.json', JSON.stringify(review, null, 4), function(err){
                   res.send('Check your console!')
                })

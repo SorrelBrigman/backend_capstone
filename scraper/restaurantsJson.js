@@ -1,4 +1,4 @@
-[
+let restaurantObj = [
 {
     "name": "The Catbird Seat",
     "category_str_list": "American (New)",
@@ -9920,3 +9920,7 @@
     "sunday_hours": "",
     "numberOfReviews": 5
 }
+]
+
+
+module.exports = restaurantObj;

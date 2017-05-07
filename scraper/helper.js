@@ -33,27 +33,37 @@ const getRatingNumber = (ratingString) => {
 }
 
 const reviewPages = (restaurantObj) => {
+  console.log(restaurantObj)
   let reviewCount = restaurantObj.numberOfReviews;
   //find the number of pages of reviews
-  let pageNumber = (reviewCount/20);
+  let pageNumber = (reviewCount / 20);
   //find out the number of reviews on the last page
   let lastPage = (reviewCount%20);
-  // if(lastPage !== 0) {
+  // if(pageNumber === 0) {
   //   pageNumber = pageNumber + 1;
   // }
   let reviewExtentions = [];
-  for (let i = 0; i < pageNumber; i++) {
+  let restart = 0;
+  for (let i = restart; i < pageNumber; i++) {
+    console.log("i", i)
+    console.log("pageNUmber", pageNumber)
     let urlExtention;
     if(i === 0) {
       urlExtention = "";
-    } else {i < pageNumber} {
+    } else if (i < pageNumber) {
       let start = i * 20;
       urlExtention = `?start=${start}`;
       // console.log(urlExtention)
+    } else {
+      if (i === parseInt(reviewCount/20)) {
+        return
+      }
     }
+      console.log("urlExtention", urlExtention)
     reviewExtentions.push(urlExtention);
     // console.log(reviewExtentions);
   }
+  console.log("array of extentions", reviewExtentions)
   return reviewExtentions;
 }
 
