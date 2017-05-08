@@ -17,6 +17,7 @@ module.exports = {
 
   development: {
     client: 'postgresql',
+    debug: true,
     connection: {
       database: 'yelp_db'
     },
