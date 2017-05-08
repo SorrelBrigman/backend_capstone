@@ -17,8 +17,10 @@
   },
   "homepage": "https://github.com/SorrelBrigman/backend_capstone#readme",
   "dependencies": {
+    "bookshelf": "^0.10.3",
     "cheerio": "^0.22.0",
     "express": "^4.15.2",
+    "knex": "^0.13.0",
     "request": "^2.81.0",
     "request-promise-native": "^1.0.3"
   }

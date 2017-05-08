@@ -8,7 +8,7 @@ const {getReviewsOnPage} = require('./reviewScrape');
 const {lineBreakRemover, parseCount, getRatingNumber, reviewPages, lastPageReviews } = require('./helper.js');
 const restaurantJson = require('./restaurantsJson.js')
 
-let j = 85;
+let j = 135;
 
 
 
