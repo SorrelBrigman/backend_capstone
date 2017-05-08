@@ -1,6 +1,7 @@
 
 exports.up = function(knex, Promise) {
-  return knex.schema.createTableIfNotExists('restaurants', function (table) {
+  return knex.schema
+  .createTableIfNotExists('restaurants', function (table) {
     table.string('yelp_id').notNullable().unique().primary();
     table.string('price_range');
     table.specificType('category_str_list', knex.raw('text[]'));
