@@ -8,7 +8,7 @@ const {getReviewsOnPage} = require('./reviewScrape');
 const {lineBreakRemover, parseCount, getRatingNumber, reviewPages, lastPageReviews } = require('./helper.js');
 const restaurantJson = require('./restaurantsJson.js')
 
-let j = 0;
+let j = 83;
 
 
 
@@ -18,7 +18,7 @@ let j = 0;
 let scrapeReviews = () => {
   let reviewInfo = []
   // console.log(list.length);
-  for(var i =0; i < 25; i++) {
+  for(var i =0; i < 15; i++) {
     console.log("i outside invet", i);
     setTimeout(() => {
       let restObj = restaurantJson[j]
@@ -28,7 +28,7 @@ let scrapeReviews = () => {
       } else if (j === 1 ) {
         yelp = `the-stillery-nashville`
       } else {
-        let offset = j - 2;
+        let offset = j;
         yelp = restaurantJson[offset].yelp_id;
       }
       console.log("i inside", j)

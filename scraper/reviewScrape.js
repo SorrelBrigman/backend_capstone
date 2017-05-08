@@ -56,10 +56,10 @@ const getReviewsOnPage = (html, yelpRestId) => {
               //push each review to the array of reviews for this page
               jsonReviews.push(review);
              // console.log("jsonReviews", jsonReviews);
-                fs.appendFileSync('outputReviews.json', JSON.stringify(review, null, 4), function(err){
+                fs.appendFileSync('outputreview02.json', JSON.stringify(review, null, 4), function(err){
                   res.send('Check your console!')
                })
-                fs.appendFileSync('outputReviews.json', `,`, function(err){
+                fs.appendFileSync('outputreview02.json', `,`, function(err){
                   res.send('Check your console!')
                })
             }
