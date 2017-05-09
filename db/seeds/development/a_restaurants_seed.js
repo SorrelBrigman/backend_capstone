@@ -4,7 +4,7 @@ const {knex} = require('../../database');
 
 const restaurants = require('./restaurantsJson');
 
-console.log(restaurants[1]);
+// console.log(restaurants[1]);
 
 const restaurantPromise = restaurants.map(
   ({yelp_id,

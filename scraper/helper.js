@@ -73,4 +73,33 @@ const lastPageReviews = (restaurantObj) => {
   return lastPage;
 }
 
-module.exports = {lineBreakRemover, parseCount, getRatingNumber, reviewPages, lastPageReviews }
+
+const compareId = (sortedArray) => {
+  let uniqueUsers = []
+  uniqueUsers.push(sortedArray[0]);
+  for(let i = 1; i < sortedArray.length; i++) {
+    if(sortedArray[i].yelp_id === sortedArray[i-1].yelp_id) {
+
+    } else {
+      uniqueUsers.push(sortedArray[i])
+    }
+  }
+  console.log(uniqueUsers)
+  return uniqueUsers
+}
+
+
+const getUniqueUsers = (reviewArray) => {
+  reviewArray.sort((a,b) => {
+    if(a.yelp_id < b.yelp_id)
+      return -1;
+    if (a.yelp_id > b.yelp_id)
+      return 1;
+    return 0;
+  })
+  return reviewArray;
+  // let filteredUsers = compareId(reviewArray);
+  // return filteredUsers;
+}
+
+module.exports = {lineBreakRemover, parseCount, getRatingNumber, reviewPages, lastPageReviews, getUniqueUsers, compareId }
