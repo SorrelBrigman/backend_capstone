@@ -14,9 +14,9 @@ const compareId = (sortedArray) => {
     if(sortedArray[i].yelp_id === sortedArray[i-1].yelp_id) {
 
     } else {
-
+      let { yelp_id, user_name, user_location} = sortedArray[i]
   // return uniqueUsers
-      fs.appendFileSync('sortedUsers.json', JSON.stringify(sortedArray[i], null, 4), function(err){
+      fs.appendFileSync('sortedUsers.json', JSON.stringify({yelp_id, user_name, user_location}, null, 4), function(err){
                     res.send('Check your console!')
                  })
         fs.appendFileSync('sortedUsers.json', `,`, function(err){
@@ -43,9 +43,6 @@ const getUniqueUsers = (reviewArray) => {
   compareId(reviewArray);
   // return filteredUsers;
 }
-
-
-
 
 
 
