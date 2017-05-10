@@ -16,6 +16,16 @@ const Restaurant = bookshelf.Model.extend({
     .catch((error) => {
       return error;
     })
+  },
+  getOneRestaurant : function(id) {
+    return this.forge({id})
+    .fetch()
+    .then((row) => {
+      return row
+    })
+    .catch((error) => {
+      return error;
+    })
   }
 })
 

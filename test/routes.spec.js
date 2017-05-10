@@ -34,20 +34,20 @@ describe('Restaurant routes', () => {
     });
   });
 
-  // describe('GET /api/v1/shows/:id', () => {
-  //   it('should return a single show', () => {
-  //    return chai.request(server)
-  //    .get('/api/v1/shows/1')
-  //    .then( (res) => {
-  //     res.should.have.status(200);
-  //     res.should.be.json;
-  //     res.body.should.be.a('object');
-  //     res.body.should.have.property('name');
-  //     res.body.name.should.equal('Mr. Robot');
-  //    });
+  describe('GET /api/v1/restaurants/:id', () => {
+    it('should return a restaurant show', () => {
+     return chai.request(server)
+     .get('/api/v1/restaurants/the-catbird-seat-nashville')
+     .then( (res) => {
+      res.should.have.status(200);
+      res.should.be.json;
+      res.body.should.be.a('object');
+      res.body.should.have.property('name');
+      res.body.name.should.equal('The Catbird Seat');
+     });
 
-  //   });
-  // });
+    });
+  });
   // describe('POST /api/v1/shows/new', () => {
   //   it('should write a show obj to the db', () => {
   //     return chai.request(server)
