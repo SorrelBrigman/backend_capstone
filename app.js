@@ -5,7 +5,9 @@ const path = require('path');
 const logger = require('morgan');
 const bodyParser = require('body-parser');
 
-// const routes = require('./routes/')
+const app = express();
+
+const routes = require('./routes/')
 
 if (process.env.NODE_ENV !== 'test') {
   app.use(logger('dev'));
@@ -13,7 +15,7 @@ if (process.env.NODE_ENV !== 'test') {
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 
-// app.use('/api/v1/', routes);
+app.use('/api/v1/', routes);
 
 
 //catch 404 errors and pass to error handler
