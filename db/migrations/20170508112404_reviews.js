@@ -3,13 +3,13 @@ exports.up = function(knex, Promise) {
   return knex.schema
   .createTableIfNotExists('reviews', function (table) {
     table.increments();
-    table.string('restaurant_id').references('restaurants.yelp_id');
-    table.string('user_id').references('users.yelp_id');
-    table.integer('rating').notNullable();
+    table.string('restaurant_id').references('restaurants.id');
+    table.string('user_id').references('users.id');
+    table.integer('rating');
     table.string('review_date');
-    table.integer('voted_useful');
-    table.integer('voted_funny');
-    table.integer('voted_cool');
+    table.integer('votes_useful');
+    table.integer('votes_funny');
+    table.integer('votes_cool');
   })
 };
 

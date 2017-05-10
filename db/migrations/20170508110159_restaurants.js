@@ -2,7 +2,7 @@
 exports.up = function(knex, Promise) {
   return knex.schema
   .createTableIfNotExists('restaurants', function (table) {
-    table.string('yelp_id').notNullable().unique().primary();
+    table.string('id').notNullable().unique().primary();
     table.string('name');
     table.string('price_range');
     table.string('category_str_list');

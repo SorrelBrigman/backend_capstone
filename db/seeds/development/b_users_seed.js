@@ -19,7 +19,7 @@ const reviewPromise = reviews.map(
     // console.log("yelp_id", yelp_id);
     // console.log("user_name", user_name);
     // console.log("user_location", user_location)
-    return knex('users').insert({yelp_id, user_name, user_location})
+    return knex('users').insert({id: yelp_id, user_name, user_location})
 
   // catch (e) {
   //   console.log("catch")

@@ -2,7 +2,7 @@
 
 const {knex} = require('../../database');
 
-const restaurants = require('./restaurantsJson');
+const restaurants = require('../../data/restaurants.json');
 
 // console.log(restaurants[1]);
 
@@ -27,7 +27,7 @@ const restaurantPromise = restaurants.map(
     sunday_hours,
     numberOfReviews}) => {
     return knex('restaurants').insert({
-      yelp_id,
+      id: yelp_id,
       name,
       price_range,
       category_str_list,
