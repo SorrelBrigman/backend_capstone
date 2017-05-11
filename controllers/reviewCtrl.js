@@ -65,3 +65,29 @@ module.exports.getRelavantReviews = ({query}, res, next) => {
 // join reviews on users.id = reviews.user_id
 // where reviews.restaurant_id = 'the-catbird-seat-nashville' and reviews.rating >= 4
 // order by reviews.rating) and reviews.restaurant_id ='husk-nashville';
+
+
+const getFilteredReviewsKnex = (restaurantName, rating, otherRestaurantName) => {
+  return knex.raw(`select * from reviews
+join users on users.id = reviews.user_id
+where reviews.user_id in (select users.id from users
+join reviews on users.id = reviews.user_id
+where reviews.restaurant_id = '${restaurantName}' and reviews.rating ${rating}
+order by reviews.rating) and reviews.restaurant_id ='${otherRestaurantName}';
+`)
+}
+
+
+
+module.exports.getOtherRestaurantReviews = ({ query }, res, next) => {
+  let restaurantName = query.restaurant_id;
+  let rating = query.rating;
+  let otherRestaurantName = query.restaurant_to_compare
+  getFilteredReviewsKnex(restaurantName, rating, otherRestaurantName)
+  .then((rows) => {
+    res.status(200).json(rows)
+  })
+  .catch((error) => {
+    next(error)
+  })
+}
