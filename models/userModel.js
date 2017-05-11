@@ -1,4 +1,4 @@
-const { bookshelf } = require('../db/database');
+const { bookshelf, knex } = require('../db/database');
 require('./reviewModel');
 require('./restaurantModel');
 
@@ -17,6 +17,12 @@ const User = bookshelf.Model.extend({
     .catch((error) => {
       return error;
     })
+  },
+  getUsersByRestaurantRatingKnex : function (restaurant_id, rating) {
+    return knex.raw(`select * from users
+    join reviews on users.id = reviews.user_id
+    where reviews.restaurant_id = '${restaurant_id}' and reviews.rating ${rating}
+    order by reviews.rating;`)
   }
 
 });

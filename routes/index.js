@@ -13,7 +13,7 @@ router.get('/', (res, req)=> {
   res.json({
     "title": "Similar Tastes Nashville API",
     "restaurants": "localhost:3000/api/v1/restaurants",
-    "restaurants by id": "localhost:3000/api/v1/restaurants/:id"
+    "restaurants by id": "localhost:3000/api/v1/restaurants/:id",
     "users by restaurant rating": "localhost:3000/api/v1/users/restaurant",
     "reviews by specific restaurant rating": "localhost:3000/api/v1/reviews",
     "reviews by specific user": "localhost:3000/api/v1/reviews/user/:id",

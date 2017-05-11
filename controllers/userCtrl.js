@@ -15,18 +15,10 @@ const Review = require('../models/reviewModel')
 //get all users who reviewed a restaurant a certain way
 
 
-
-const getUsersByRestaurantRatingKnex = (restaurant_id, rating) => {
-  return knex.raw(`select * from users
-join reviews on users.id = reviews.user_id
-where reviews.restaurant_id = '${restaurant_id}' and reviews.rating ${rating}
-order by reviews.rating;`)
-}
-
 module.exports.getUsersByRestaurantRating = ({query}, res, next) => {
   let restaurant_id = query.restaurant_id;
   let rating = query.rating;
-  getUsersByRestaurantRatingKnex(restaurant_id, rating)
+  User.getUsersByRestaurantRatingKnex(restaurant_id, rating)
   .then((users) => {
     res.status(200).json(users)
   })
