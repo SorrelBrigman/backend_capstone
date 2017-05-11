@@ -6,6 +6,7 @@ const router = Router();
 
 router.use(require('./restaurantRoute'));
 router.use(require('./userRoute'));
+router.use(require('./reviewRoute'))
 
 
 router.get('/', (res, req)=> {
