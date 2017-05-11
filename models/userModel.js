@@ -1,20 +1,12 @@
 const { bookshelf } = require('../db/database');
 require('./reviewModel');
-
-
-
-//SQL query to get users by a certain restaurant and their rating
-// select users.user_name, reviews.user_id, reviews.restaurant_id, reviews.rating from users
-// join reviews on users.id = reviews.user_id
-// where reviews.restaurant_id = 'the-catbird-seat-nashville' and reviews.rating <= 2
-// order by reviews.rating;
-
-
+require('./restaurantModel');
 
 
 const User = bookshelf.Model.extend({
   tableName: 'users',
-  reviews : function () {return this.hasMany('Review')};
+  reviews : function () {return this.hasMany('Review')},
+  restaurants : function () {return this.belongsToMany('User').through('Review')}
 }, {
   getAll: function () {
     return this.forge()
@@ -29,4 +21,4 @@ const User = bookshelf.Model.extend({
 
 });
 
-module.exports = ("User", User);
+module.exports = bookshelf.model("User", User);

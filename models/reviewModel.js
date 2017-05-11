@@ -22,4 +22,4 @@ const Review = bookshelf.Model.extend({
 })
 
 
-module.exports = ('Review', Review);
+module.exports = bookshelf.model('Review', Review);

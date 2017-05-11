@@ -2,10 +2,12 @@
 
 const { bookshelf } = require('../db/database');
 require('./reviewModel');
+require('./userModel')
 
 const Restaurant = bookshelf.Model.extend({
   tableName: 'restaurants',
-  reviews : function () {return this.hasMany('Review')};
+   reviews : function () {return this.hasMany('Review')},
+   users : function () {return this.belongsToMany('User').through('Review')}
 }, {
   getAll : function() {
     console.log("getting all restaurants from Model");
@@ -32,4 +34,4 @@ const Restaurant = bookshelf.Model.extend({
 
 
 
-module.exports = ('Restaurant', Restaurant);
+module.exports = bookshelf.model('Restaurant', Restaurant);

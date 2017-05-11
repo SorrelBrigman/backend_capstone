@@ -5,6 +5,7 @@ const { Router } = require('express');
 const router = Router();
 
 router.use(require('./restaurantRoute'));
+router.use(require('./userRoute'));
 
 
 router.get('/', (res, req)=> {
