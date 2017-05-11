@@ -1,10 +1,11 @@
 'use strict'
 
 const { bookshelf } = require('../db/database');
-
+require('./reviewModel');
 
 const Restaurant = bookshelf.Model.extend({
-  tableName: 'restaurants'
+  tableName: 'restaurants',
+  reviews : function () {return this.hasMany('Review')};
 }, {
   getAll : function() {
     console.log("getting all restaurants from Model");

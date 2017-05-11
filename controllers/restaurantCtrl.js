@@ -24,3 +24,15 @@ module.exports.getSingleRestaurant = ({params: {id}}, res, next) => {
     next(error);
   })
 }
+
+
+module.exports.getReviewsByRestaurant = ({query: {restaurantId}}, res, next) => {
+  Restaurant.forge({id: restaurantId})
+  .fetch({withRelated: ['reviews'], require: true})
+  .then((restReviews) => {
+    res.status(200).json(restReviews)
+  })
+  .catch((error) => {
+    next(error);
+  })
+}
