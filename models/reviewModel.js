@@ -31,8 +31,9 @@ const Review = bookshelf.Model.extend({
     return knex.raw(`select * from reviews join users on users.id = reviews.user_id where users.id = '${userId}'`)
   },
   getFilteredReviewsKnex : function (restaurantName, rating, otherRestaurantName) {
-    return knex.raw(`select * from reviews
+    return knex.raw(`select reviews.id, reviews.restaurant_id, reviews.user_id, reviews.rating, reviews.review_date, reviews.votes_useful, reviews.votes_funny, reviews.votes_cool, restaurants.name from reviews
     join users on users.id = reviews.user_id
+    join restaurants on reviews.restaurant_id = restaurants.id
     where reviews.user_id in (select users.id from users
     join reviews on users.id = reviews.user_id
     where reviews.restaurant_id = '${restaurantName}' and reviews.rating ${rating}
