@@ -62,6 +62,14 @@ module.exports.getOtherRestaurantReviews = ({ query }, res, next) => {
   let restaurantName = query.restaurant_id;
   let rating = query.rating;
   let otherRestaurantName = query.restaurant_to_compare
+  if (rating === '%3E=4') {
+    console.log('love')
+    rating = `>=4`
+  } else if (rating === '%3C=2'){
+    console.log('hate')
+    rating = `<=2`
+  }
+  console.log("rating", rating)
   Review.getFilteredReviewsKnex(restaurantName, rating, otherRestaurantName)
   .then((rows) => {
     res.status(200).json(rows)
