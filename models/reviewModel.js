@@ -24,7 +24,7 @@ const Review = bookshelf.Model.extend({
       join restaurants on reviews.restaurant_id = restaurants.id
       where reviews.user_id in (select users.id from users
       join reviews on users.id = reviews.user_id where reviews.restaurant_id = '${restaurantName}' and reviews.rating ${rating}
-       order by reviews.rating)`)
+       order by reviews.rating) and reviews.rating >= 4`)
 
   },
   getReviewsByUserKnex : function (userId) {
