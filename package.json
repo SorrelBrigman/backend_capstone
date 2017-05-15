@@ -1,0 +1,41 @@
+{
+  "name": "backend_capstone",
+  "version": "1.0.0",
+  "description": "Server side portion of the student concept project Similar Tastes",
+  "main": "scraper/server2.js",
+  "scripts": {
+    "db:reset": "knex migrate:rollback && knex migrate:latest && knex seed:run",
+    "start": "nodemon bin/nashville_restaurants",
+    "test": "nodemon --exec \"mocha --recursive\" -R list"
+  },
+  "engines": {
+    "node": "7.4.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SorrelBrigman/backend_capstone.git"
+  },
+  "author": "Sorrel Brigman",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/SorrelBrigman/backend_capstone/issues"
+  },
+  "homepage": "https://github.com/SorrelBrigman/backend_capstone#readme",
+  "dependencies": {
+    "body-parser": "^1.17.1",
+    "bookshelf": "^0.10.3",
+    "cheerio": "^0.22.0",
+    "cors": "^2.8.3",
+    "express": "^4.15.2",
+    "knex": "^0.13.0",
+    "morgan": "^1.8.1",
+    "pg": "^6.1.5",
+    "request": "^2.81.0",
+    "request-promise-native": "^1.0.3"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "chai-http": "^3.0.0",
+    "mocha": "^3.3.0"
+  }
+}
