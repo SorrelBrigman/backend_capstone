@@ -3,9 +3,14 @@
 const express = require('express');
 const path = require('path');
 const logger = require('morgan');
+const cors = require('cors');
 const bodyParser = require('body-parser');
 
-// const routes = require('./routes/')
+const app = express();
+console.log("cors", cors);
+app.use(cors());
+
+const routes = require('./routes/')
 
 if (process.env.NODE_ENV !== 'test') {
   app.use(logger('dev'));
@@ -13,7 +18,7 @@ if (process.env.NODE_ENV !== 'test') {
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 
-// app.use('/api/v1/', routes);
+app.use('/api/v1/', routes);
 
 
 //catch 404 errors and pass to error handler
