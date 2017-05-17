@@ -2,8 +2,9 @@
 
 const {knex} = require('../../database');
 
-const reviews = require('../../data/reviews.json');
+const reviewsAll = require('../../data/reviews.json');
 
+const reviews = reviewsAll.slice(75000);
 
 console.log("number of reviews", reviews.length)
 
@@ -39,11 +40,8 @@ const reviewPromise = reviews.map(
 })
 
 exports.seed = function(knex, Promise) {
-  // Deletes ALL existing entries
-  return knex('reviews').del()
-    .then(() => {
-      // Inserts seed entries
+
       return Promise.all(reviewPromise)
       .catch(e => {console.log("my error", e)})
-    });
+    ;
 };
