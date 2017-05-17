@@ -15,7 +15,6 @@ module.exports.getRestaurants = (req, res, next) => {
 }
 
 module.exports.getSingleRestaurant = ({params: {id}}, res, next) => {
-  console.log("restaurant id", id);
   Restaurant.getOneRestaurant(id)
   .then((restaurant) => {
     res.status(200).json(restaurant);

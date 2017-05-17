@@ -1,3 +1,5 @@
+//file for scraping review data
+
 const express = require('express');
 const fs = require('fs');
 const app     = express();
@@ -7,8 +9,8 @@ const {getRestaurantInfo} = require('./restaurantScrape.js');
 const {getReviewsOnPage} = require('./reviewScrape');
 const {lineBreakRemover, parseCount, getRatingNumber, reviewPages, lastPageReviews } = require('./helper.js');
 const restaurantJson = require('./restaurantsJson.js')
-
-let j = 493;
+//j equals the index value of the restaurant array to start at
+let j = 0;
 
 
 

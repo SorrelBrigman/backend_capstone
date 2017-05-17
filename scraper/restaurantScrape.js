@@ -7,19 +7,9 @@ const fs = require('fs');
 
 const getRestaurantInfo = (html, yelp) => {
 
-  // let url = urlSent;
-  // console.log(url);
-  // request(url, function(error, response, html){
-
-      console.log("got here")
-          // First we'll check to make sure no errors occurred when making the request
-
-          // if(!error){
-              // Next, we'll utilize the cheerio library on the returned html which will essentially give us jQuery functionality
 
               var $ = cheerio.load(html);
 
-              // Finally, we'll define the variables we're going to capture
 
               var name,
               category_str_list,

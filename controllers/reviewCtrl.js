@@ -6,6 +6,7 @@ const User = require('../models/userModel');
 const Review = require('../models/reviewModel')
 
 // get all reviews of a certain user
+// SQL query:
 // select * from reviews
 // join users on users.id = reviews.user_id
 // where users.id = '--8RqkRwr71-t2GNW87GrQ';
@@ -61,15 +62,16 @@ module.exports.getRelavantReviews = ({query}, res, next) => {
 module.exports.getOtherRestaurantReviews = ({ query }, res, next) => {
   let restaurantName = query.restaurant_id;
   let rating = query.rating;
-  let otherRestaurantName = query.restaurant_to_compare
+  let otherRestaurantName = query.restaurant_to_compare;
+  //convert url encoded request to what in housed in the db
   if (rating === '%3E=4') {
-    console.log('love')
+
     rating = `>=4`
   } else if (rating === '%3C=2'){
-    console.log('hate')
+
     rating = `<=2`
   }
-  console.log("rating", rating)
+
   Review.getFilteredReviewsKnex(restaurantName, rating, otherRestaurantName)
   .then((rows) => {
     res.status(200).json(rows)

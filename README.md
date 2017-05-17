@@ -6,6 +6,9 @@ This is the backend REST API for the application "Similar Tastes"
 You can find the repo for the front end of this application here:
 https://github.com/SorrelBrigman/similar_tastes_nashville
 
+Mockups and the ERD for the site can be found in the ERD_and_Mockups folder.
+Mockups were considered a basic starting point, not the final design decision.
+
 
 The Trello board used for this project can be found here:
 https://trello.com/b/OsxMDFwM/back-end-capstone
