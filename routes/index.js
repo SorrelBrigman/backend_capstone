@@ -9,7 +9,7 @@ router.use(require('./userRoute'));
 router.use(require('./reviewRoute'))
 
 
-router.get('/', (res, req)=> {
+router.get('/', (req, res)=> {
   res.json({
     "title": "Similar Tastes Nashville API",
     "restaurants": "https://similar-tastes-nashville-api.herokuapp.com/api/v1/restaurants",
