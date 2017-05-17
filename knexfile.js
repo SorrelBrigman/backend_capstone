@@ -33,7 +33,7 @@ module.exports = {
   production: {
     client: 'postgresql',
     connection: {
-      database: 'yelp_db'
+      database: 'postgres://jatigrdzbvgoba:42b3422665a9b10bdbcea0ea5527dce8fcba3e0ea872436743a6daa60a5898f3@ec2-184-73-236-170.compute-1.amazonaws.com:5432/d6hgu61jgca0gg'
     },
     migrations: {
       directory: __dirname + '/db/seeds/production'
