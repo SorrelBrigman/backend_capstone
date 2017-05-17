@@ -1,12 +1,14 @@
+// This file takes the json of reviews, and writes a new json with only user information
+// it also deletes redundant users.
+
 const fs = require('fs');
-const reviews = require('./db/data/reviews.json');
-//const {getUniqueUsers, compareId} = require('./scraper/helper.js')
+const reviews = require('../db/data/reviews.json');
+
 
 
 
 const compareId = (sortedArray) => {
-  console.log("I've been called")
-  console.log("sortedArray length", sortedArray.length)
+
   let uniqueUsers = []
   uniqueUsers.push(sortedArray[0]);
 
@@ -39,7 +41,7 @@ const compareId = (sortedArray) => {
     }
   }
 
-  console.log(uniqueUsers)
+
 }
 
 
@@ -58,15 +60,15 @@ const getUniqueUsers = (reviewArray) => {
 }
 
 
+getUniqueUsers(reviews);
 
 
+// const myUsers = (reviewArray) => {
 
-const myUsers = (reviewArray) => {
-
-  getUniqueUsers(reviewArray);
-
-
-}
+//   getUniqueUsers(reviewArray);
 
 
-myUsers(reviews);
+// }
+
+
+// myUsers(reviews);
