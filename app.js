@@ -7,7 +7,7 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 
 const app = express();
-console.log("cors", cors);
+
 app.use(cors());
 
 const routes = require('./routes/')
@@ -30,7 +30,7 @@ app.use((req, res, next) => {
 
 if(app.get('env') === 'development' || app.get('env') === 'test') {
   app.use( (err, req, res, next) => {
-    console.log("error!", err);
+
     res.status(err.status || 500);
     res.json({
       message: err.message,
